@@ -1,0 +1,32 @@
+{
+  "name": "menzeri",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "win": {
+    "target": "NSIS"
+  },
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "npm install && electron index.js",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.8.4",
+    "electron-builder": "^20.28.4",
+    "electron-packager": "^12.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "html-pdf": "^2.2.0",
+    "is-online": "^7.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.1",
+    "request": "^2.85.0",
+    "sql.js": "^0.5.0",
+    "sweetalert2": "^7.18.0"
+  }
+}

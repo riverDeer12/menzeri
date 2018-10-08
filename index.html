@@ -1,0 +1,56 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>menzeRi - Prijava</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/booststrap-lumen.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<div class="row">
+    <div class="col-md-3 offset-8">
+        <div class="form-group">
+            <button id="updateUsersBtn" type="button" class="btn btn-primary">Azuriraj korisnike</button>
+        </div>
+    </div>
+    <div>
+        <button id="minimizeBtn" type="button" class="btn btn-success btn-lg minimize-app-btn">-</button>
+        <!--<button id="maximizeBtn" type="button" class="btn btn-success btn-lg maximize-app-btn">+</button>-->
+        <button id="exitAppBtn" type="button" class="btn btn-danger btn-lg exit-app-btn">X</button>
+    </div>
+</div>
+
+<div class="flex-center full-height">
+    <div class="col-md-3">
+        <div class="text-center">
+            <img src="logo.png">
+        </div>
+        <form class="form-horizontal" id="loginForm" action="#" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" id="username" value="Stipe" name="username" placeholder="Korisnicko ime..."
+                       required autofocus>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" id="password" value="stipe5" name="password" placeholder="Lozinka..."
+                       required>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary btn-primary float-right" type="submit" id="loginBtn" name="loginBtn"
+                       value="Prijavi se">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--script src="node_modules/jquery/dist/jquery.js"></script-->
+<script>
+    window.jQuery = window.$ = require('jquery');
+</script>
+<script src="node_modules/popper.js/dist/umd/popper.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/helper_functions.js"></script>
+<script type="text/javascript" src="js/login_functions.js"></script>
+</body>
+
+</html>

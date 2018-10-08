@@ -1,0 +1,66 @@
+html, body {
+    -webkit-app-region: drag;
+    background-color: #325a8c;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+body{
+    padding: 20px;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}
+
+textarea {
+    -webkit-app-region: no-drag;
+    resize:none;
+}
+
+input {
+    -webkit-app-region: no-drag;
+}
+
+.row {
+    margin: 0 auto;
+}
+
+.full-height {
+    height: 80vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.spacing {
+    margin: 10px;
+}
+
+.exit-app-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.minimize-app-btn {
+    position: absolute;
+    top: 0;
+    right: 45px;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>menzeRi - Izrada menija</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/booststrap-lumen.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<div class="row">
+    <div class="col-md-3 text-center">
+        <div class="form-group">
+            <span id="loggedUser" href="#"></span>
+            <button id="backBtn" class="btn btn-primary">Odjava</button>
+        </div>
+        <div class="form-group">
+            <button id="newMenuBtn" class="btn btn-primary btn-block">Dodaj meni +</button>
+        </div>
+        <div class="form-group">
+            <button id="removeMenuBtn" class="btn btn-danger btn-block">Ukloni meni -</button>
+        </div>
+        <div class="form-group">
+            <button id="clearDataBtn" class="btn btn-success btn-block">Ocisti sve zapise</button>
+        </div>
+        <div class="form-group">
+            <button id="getLastDataBtn" class="btn btn-warning btn-block">Dohvati zadnje podatke</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="menusContainer" class="col-md-3">
+        <label class="control-label spacing menu-heading" for="menu1">1. MENI</label>
+        <textarea id="menu1" cols="30" rows="5" class="form-control menu-data "></textarea>
+    </div>
+
+    <div id="menusContainerEng" class="col-md-3">
+        <label class="control-label spacing menu-heading-eng" for="menu1eng">1. MENU</label>
+        <textarea id="menu1eng" cols="30" rows="5" class="form-control menu-data-eng "></textarea>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-6 fixed-top" style="padding: 40px;">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="extra-meals" class="control-label spacing">POJEDINACNA JELA</label>
+                <textarea name="extra-meals" id="extra-meals" cols="30" rows="5" class="form-control "></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="extra-meals-eng" class="control-label spacing">EXTRA MEALS</label>
+                <textarea name="extra-meals-eng" id="extra-meals-eng" cols="30" rows="5"
+                          class="form-control "></textarea>
+            </div>
+        </div>
+
+        <button id="minimizeBtn" type="button" class="btn btn-success btn-lg minimize-app-btn">-</button>
+        <!--<button id="maximizeBtn" type="button" class="btn btn-success btn-lg maximize-app-btn">+</button>-->
+        <button id="exitAppBtn" type="button" class="btn btn-danger btn-lg exit-app-btn">X</button>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="side-dishes" class="control-label spacing">PRILOZI</label>
+                <textarea name="side-dishes" id="side-dishes" cols="30" rows="5" class="form-control "></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="side-dishes-eng" class="control-label spacing">SIDEDISHES</label>
+                <textarea name="side-dishes-eng" id="side-dishes-eng" cols="30" rows="5"
+                          class="form-control "></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="brunches" class="control-label spacing">DNEVNE MARENDE</label>
+                <textarea name="brunches" id="brunches" cols="30" rows="5" class="form-control "></textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="brunches-eng" class="control-label spacing">DAILY BRUNCHES</label>
+                <textarea name="brunches-eng" id="brunches-eng" cols="30" rows="5"
+                          class="form-control "></textarea>
+            </div>
+        </div>
+
+        <div class="spacing text-center">
+            <label for="extra-meals" class="control-label spacing">ODABERITE RUCAK ILI VECERU:</label>
+            <div class="radio">
+                <label class="control-label">
+                    <input type="radio" name="meal-type" value="RUCAK/LUNCH" checked> RUCAK
+                </label>
+            </div>
+
+            <div class="radio">
+                <label class="control-label">
+                    <input type="radio" name="meal-type" value="VECERA/DINNER"> VECERA
+                </label>
+            </div>
+        </div>
+
+        <div class="spacing"></div>
+
+        <div class="row">
+            <button id="printDayBtn" class="btn btn-primary btn-block ">Pripremi za printanje</button>
+        </div>
+    </div>
+</div>
+
+<!--script src="node_modules/jquery/dist/jquery.js"></script-->
+<script>
+    window.jQuery = window.$ = require('jquery');
+</script>
+<script type="text/javascript" src="node_modules/popper.js/dist/umd/popper.js"></script>
+<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/helper_functions.js"></script>
+<script type="text/javascript" src="js/menu_builder_functions.js"></script>
+<script type="text/javascript" src="js/last_entry_functions.js"></script>
+</body>
+
+</html>
