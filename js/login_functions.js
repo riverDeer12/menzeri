@@ -100,7 +100,7 @@ function loginFormSubmit(event) {
     }
 }
 
-exitAppBtn.addEventListener('click', exitApp, false);
-minimizeBtn.addEventListener('click', minimizeWindow, false);
+//exitAppBtn.addEventListener('click', exitApp, false);
+//minimizeBtn.addEventListener('click', minimizeWindow, false);
 updateUsersBtn.addEventListener('click', getUsers, false);
 loginForm.addEventListener('submit', loginFormSubmit, false);
