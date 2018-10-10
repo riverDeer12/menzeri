@@ -10,9 +10,11 @@ const {app, BrowserWindow} = require('electron');
     // Create the browser window.
     win = new BrowserWindow({
         backgroundColor: '#312450',
+        height: 800,
+        width: 1200,
         show: false,
         frame: true,
-        fullscreen: false,
+        fullscreen: false
     });
 
     win.once('ready-to-show', () =>{
