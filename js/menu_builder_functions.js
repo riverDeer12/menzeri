@@ -103,7 +103,7 @@ function create_pdf_document() {
     let printData = "";
     let menuSeparator = '.';
     printData +=
-    "<div>" +
+    "<div style='padding: 30px'>" +
     "<div style='float: right;'>" + todaysDate(menuSeparator) + "</div><br>" +
     "<h1 style='text-align: center;'>MENI ZA X-ICE</h1>";
     for (let i = 0; i < mealType.length; i++) {
@@ -121,8 +121,8 @@ function create_pdf_document() {
     for (let i = 0; i < menus.length; i++) {
         printData += "<div>" +
         "<div style='display: inline-block; text-align: left;'>" +
-        "<span style='float: left; margin-left:200px;'><h4>" + menusHeadings[i].textContent + "</h4></span>" +
-        "<span style='float: right; margin-left: 300px;'><h4>" + menusHeadingsEng[i].textContent + "</h4></span>" +
+        "<span style='float: left;'><h4>" + menusHeadings[i].textContent + "</h4></span>" +
+        "<span style='float: right; margin-left: 360px;'><h4>" + menusHeadingsEng[i].textContent + "</h4></span>" +
         "</div><br>";
 
         let menusLines = menus[i].value;
@@ -144,13 +144,13 @@ function create_pdf_document() {
         printData += "<div style='display: inline; text-align: left;'>";
         for (let j = 0; j < menusLines.length; j++) {
             try {
-                printData += "<span style='float: left;'>" + menusLines[j].toUpperCase() + "</span>";
+                printData += "<span style='float: left;'>" + menusLines[j].toUpperCase() + "<br></span>";
             } catch (error) {
                 console.log("Empty line, don't use uppercase function.")
             }
 
             try {
-                printData += "<span style='float: right; min-width: 365px;'>" + menusLinesEng[j].toUpperCase() + "</span><br>";
+                printData += "<span style='float: right; min-width: 300px;'>" + menusLinesEng[j].toUpperCase() + "</span><br>";
             } catch (error) {
                 console.log("Empty line, don't use uppercase function.")
             }
