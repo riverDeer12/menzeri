@@ -38,8 +38,9 @@ function add_menu(event) {
     menusContainerEng.appendChild(newMenuHeadingEng);
     menusContainerEng.appendChild(newMenuEng);
 
-    newMenu.onpaste = clipboard_function;
-    newMenuEng.onpaste = clipboard_function;
+
+    newMenu.onchange = change_function;
+    newMenuEng.onchange = change_function;
 
     mainMenuCounter++;
 }
@@ -55,7 +56,7 @@ function remove_menu(event) {
     if (menuNumber <= 2) {
         menuAlert({
             type: 'warning',
-            text: 'Ne mozete izbrisati poslijednji meni.',
+            text: 'Ne mozete izbrisati posljednji meni.',
             showConfirmButton: false,
             timer: 2000
         });
@@ -102,9 +103,9 @@ function create_pdf_document() {
     let printData = "";
     let menuSeparator = '.';
     printData +=
-        "<div>" +
-        "<div style='float: right;'>" + todaysDate(menuSeparator) + "</div><br>" +
-        "<h1 style='text-align: center;'>MENI ZA X-ICE</h1>";
+    "<div>" +
+    "<div style='float: right;'>" + todaysDate(menuSeparator) + "</div><br>" +
+    "<h1 style='text-align: center;'>MENI ZA X-ICE</h1>";
     for (let i = 0; i < mealType.length; i++) {
         if (mealType[i].checked) {
             JSONObject.data.type = mealType[i].value;
@@ -119,10 +120,10 @@ function create_pdf_document() {
 
     for (let i = 0; i < menus.length; i++) {
         printData += "<div>" +
-            "<div style='display: inline-block; text-align: left;'>" +
-            "<span style='float: left;'><h4>" + menusHeadings[i].textContent + "</h4></span>" +
-            "<span style='float: right; margin-left: 350px;'><h4>" + menusHeadingsEng[i].textContent + "</h4></span>" +
-            "</div><br>";
+        "<div style='display: inline-block; text-align: left;'>" +
+        "<span style='float: left; margin-left:200px;'><h4>" + menusHeadings[i].textContent + "</h4></span>" +
+        "<span style='float: right; margin-left: 300px;'><h4>" + menusHeadingsEng[i].textContent + "</h4></span>" +
+        "</div><br>";
 
         let menusLines = menus[i].value;
         menusLines = menusLines.replace("\n\n", "\n");
@@ -156,13 +157,13 @@ function create_pdf_document() {
 
         }
         printData += "</div>" +
-            "</div></div>";
+        "</div></div>";
     }
 
     let printData2 = "<div style='float: right;' >" + todaysDate(menuSeparator) + "</div><br>" +
-        "<div>" +
-        "<h3 style='text-align: center;'>POJEDINACNA JELA/EXTRA MEALS</h3>" +
-        "<div style='display: inline; text-align: left;'>";
+    "<div>" +
+    "<h3 style='text-align: center;'>POJEDINACNA JELA/EXTRA MEALS</h3>" +
+    "<div style='display: inline; text-align: left;'>";
 
     let extraMealsLines = extraMeals.value;
     extraMealsLines = extraMealsLines.replace("\n\n", "\n");
@@ -194,11 +195,11 @@ function create_pdf_document() {
         }
     }
     printData2 += "</div>" +
-        "</div><br>";
+    "</div><br>";
 
     printData2 += "<div> " +
-        "<h3 style='text-align: center;'>PRILOZI/SIDEDISHES</h3>" +
-        "<div style='display: inline; text-align: left;'>";
+    "<h3 style='text-align: center;'>PRILOZI/SIDEDISHES</h3>" +
+    "<div style='display: inline; text-align: left;'>";
 
     let sideDishesLines = sideDishes.value;
     sideDishesLines = sideDishesLines.replace("\n\n", "\n");
@@ -232,11 +233,11 @@ function create_pdf_document() {
         }
     }
     printData2 += "</div>" +
-        "</div><br>";
+    "</div><br>";
 
     printData2 += "<div> " +
-        "<h3 style='text-align: center;'>MARENDE/BRUNCHES</h3>" +
-        "<div style='display: inline; text-align: left;'>";
+    "<h3 style='text-align: center;'>MARENDE/BRUNCHES</h3>" +
+    "<div style='display: inline; text-align: left;'>";
 
     let brunchesLines = brunches.value;
     brunchesLines = brunchesLines.replace("\n\n", "\n");
@@ -269,7 +270,7 @@ function create_pdf_document() {
         }
     }
     printData2 += "</div>" +
-        "</div><br>";
+    "</div><br>";
 
     printData2 += "<div style='text-align: center;'>Enjoy your meal!</div>";
 
@@ -278,26 +279,48 @@ function create_pdf_document() {
     let fileSeparator = '_';
     let desktopRoute = app.getPath('desktop');
 
-    pdf.create(printData, options).toFile(desktopRoute + '/Meni - ' + todaysDate(fileSeparator) + '.pdf', function (err, res) {
+    route1 = desktopRoute + '/meniji/' + todaysDate(fileSeparator) + '/Meni - ' + getTimestamp(fileSeparator, ' ') + '.pdf'
+    route2 = desktopRoute + '/meniji/' + todaysDate(fileSeparator) + '/Ostalo - ' + getTimestamp(fileSeparator, ' ') + '.pdf'
+
+    pdf.create(printData, options).toFile(route1, function (err, res) {
         if (err)
             return console.log(err);
     });
 
-    pdf.create(printData2, options).toFile(desktopRoute + '/Ostalo - ' + todaysDate(fileSeparator) + '.pdf', function (err, res) {
+    pdf.create(printData2, options).toFile(route2, function (err, res) {
         if (err)
             return console.log(err);
     });
-    console.log(JSONObject);
 
     save_data(JSONObject);
+    showPDF(route1);
+    showPDF(route2);
+
+
     return 1;
 }
+
+//Function for showing print window, 500ms wait because of fileNotFound error.
+async function showPDF(pdf_path) {
+    await sleep(500);
+    const { BrowserWindow } = require('electron').remote
+    const PDFWindow = require('electron-pdf-window')
+
+    const win = new BrowserWindow({width: 800, height: 600})
+
+    PDFWindow.addSupport(win)
+    win.loadURL(pdf_path)
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 let JSONObject;
 
 JSONObject = {
-    "api-key": "<RD[2C`>}*vJr]1fjy-lhl.l@^OOW{F$",
-    "menza": 'Kampus',
+    "menza": menzaParameter,
     "data": {
         "type": "",
         "menus": [],
@@ -319,6 +342,9 @@ let menzaName = menzaParameter[0].toLowerCase();
 function sendToApi() {
     let request = require('request');
 
+    JSONObject['api-key'] = "<RD[2C`>}*vJr]1fjy-lhl.l@^OOW{F$";
+    JSONObject['update-time'] = getTimestamp();
+
     request({
         url: "http://menze-api.herokuapp.com/update/" + menzaName,
         method: "POST",
@@ -334,7 +360,6 @@ function sendToApi() {
 }
 
 function try_sending() {
-
     isOnline().then(online => {
         let loading = require('sweetalert2');
         if (online) {
@@ -411,5 +436,3 @@ backBtn.addEventListener('click', logout, false);
 newMenuBtn.addEventListener('click', add_menu, false);
 removeMenuBtn.addEventListener('click', remove_menu, false);
 printDayBtn.addEventListener('click', load_pdf, false);
-
-

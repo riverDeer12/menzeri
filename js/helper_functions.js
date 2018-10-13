@@ -78,6 +78,26 @@ function todaysDate(separator) {
   return today;
 }
 
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+function getTimestamp(sep=". ", timesep=":") {
+    let d = new Date();
+    let dd = addZero(d.getDate());
+    let mm = addZero(d.getMonth() + 1);
+
+    let yyyy = d.getFullYear();
+    let h = addZero(d.getHours());
+    let m = addZero(d.getMinutes());
+    // let s = addZero(d.getSeconds());
+
+    return dd + sep + mm + sep + yyyy + sep + ' ' + h + timesep + m;
+} 
+
 function clear_data(event) {
   event.preventDefault();
   let textareas = document.getElementsByTagName("textarea");
@@ -86,23 +106,40 @@ function clear_data(event) {
   }
 }
 
+function change_function(event){
+  event.preventDefault();
+  console.log(event.target.value);
+
+  event.target.value = event.target.value.replace(/["]+/g, "").trim();
+}
+
+function handle_paste_data(data) {
+  let formatedPastedData = data.replace("/^\s*[\r\n]/gm", "");
+  let formatedPastedData2 = formatedPastedData.replace(/['"]+/g, "");
+  return formatedPastedData2.replace(/\t/g, "");
+}
+
+/*
+PASTE EVENTS
+
 function clipboard_function(event) {
   event.stopPropagation();
   event.preventDefault();
 
   let clipboardData = event.clipboardData || window.clipboardData;
   let pastedData = clipboardData.getData("Text");
-  event.target.value = handle_paste_data(pastedData);
-}
+  event.target.value += handle_paste_data(pastedData);
 
 function handle_paste_data(data) {
-  let formatedPastedData = data.replace(/^\s*[\r\n]/gm, "");
+  let formatedPastedData = data.replace("/^\s*[\r\n]/gm", "");
   let formatedPastedData2 = formatedPastedData.replace(/['"]+/g, "");
   return formatedPastedData2.replace(/\t/g, "");
 }
+*/
 
 let textareas = document.getElementsByTagName("textarea");
 let textareasArray = Array.from(textareas);
 textareasArray.forEach(function(element) {
-  element.addEventListener("paste", clipboard_function, false);
+  element.addEventListener("change", change_function, false);
 });
+

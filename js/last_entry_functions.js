@@ -39,8 +39,9 @@ function add_menu() {
     menusContainerEng.appendChild(newMenuHeadingEng);
     menusContainerEng.appendChild(newMenuEng);
 
-    newMenu.onpaste = clipboard_function;
-    newMenuEng.onpaste = clipboard_function;
+
+    newMenu.onchange = change_function;
+    newMenuEng.onchange = change_function;
 
     mainMenuCounter++;
 }

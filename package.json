@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "electron-pdf-window": "^1.0.12",
     "html-pdf": "^2.2.0",
     "is-online": "^7.0.0",
     "jquery": "^3.3.1",
