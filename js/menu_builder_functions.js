@@ -423,7 +423,7 @@ function save_data(json_data) {
 
     let exportData = db.export();
     let buffer = new Buffer(exportData);
-    fs.writeFileSync("./db_menzeri.db", buffer);
+    fs.writeFileSync(path.join(__dirname, './db_menzeri.db'), buffer);
 }
 
 let newMenuBtn = document.getElementById('newMenuBtn');
