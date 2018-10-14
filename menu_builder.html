@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>menzeRi - Izrada menija</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/booststrap-lumen.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -10,7 +11,7 @@
 <body>
     <div class="row">
         <div class="col-md-6 text-center">
-            <div class="form-group">
+            <div class="form-group pull-left">
                 <span id="loggedUser" href="#"></span>
                 <button id="backBtn" class="btn btn-primary">Odjava</button>
             </div>
@@ -21,7 +22,7 @@
                 <button id="removeMenuBtn" class="btn btn-danger btn-block">Ukloni meni -</button>
             </div>
             <div class="form-group">
-                <button id="clearDataBtn" class="btn btn-success btn-block">Ocisti sve zapise</button>
+                <button id="clearDataBtn" class="btn btn-success btn-block">Očisti sve zapise</button>
             </div>
             <div class="form-group">
                 <button id="getLastDataBtn" class="btn btn-warning btn-block">Dohvati zadnje podatke</button>
@@ -44,7 +45,7 @@
         <div class="col-md-6" style="padding: 40px;">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="extra-meals" class="control-label spacing">POJEDINACNA JELA</label>
+                    <label for="extra-meals" class="control-label spacing">POJEDINAČNA JELA</label>
                     <textarea name="extra-meals" id="extra-meals" cols="30" rows="5" class="form-control "></textarea>
                 </div>
                 <div class="col-md-6">
@@ -64,7 +65,7 @@
                     <textarea name="side-dishes" id="side-dishes" cols="30" rows="5" class="form-control "></textarea>
                 </div>
                 <div class="col-md-6">
-                    <label for="side-dishes-eng" class="control-label spacing">SIDEDISHES</label>
+                    <label for="side-dishes-eng" class="control-label spacing">SIDE DISHES</label>
                     <textarea name="side-dishes-eng" id="side-dishes-eng" cols="30" rows="5"
                     class="form-control "></textarea>
                 </div>
@@ -83,16 +84,16 @@
             </div>
 
             <div class="spacing text-center">
-                <label for="extra-meals" class="control-label spacing">ODABERITE RUCAK ILI VECERU:</label>
+                <label for="extra-meals" class="control-label spacing">ODABERITE RUČAK ILI VEČERU:</label>
                 <div class="radio">
                     <label class="control-label">
-                        <input type="radio" name="meal-type" value="RUCAK/LUNCH" checked> RUCAK
+                        <input type="radio" name="meal-type" value="RUČAK / LUNCH" checked> RUČAK
                     </label>
                 </div>
 
                 <div class="radio">
                     <label class="control-label">
-                        <input type="radio" name="meal-type" value="VECERA/DINNER"> VECERA
+                        <input type="radio" name="meal-type" value="VEČERA / DINNER"> VEČERA
                     </label>
                 </div>
             </div>

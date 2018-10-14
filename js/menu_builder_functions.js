@@ -103,9 +103,12 @@ function create_pdf_document() {
     let printData = "";
     let menuSeparator = '.';
     printData +=
-    "<div style='padding: 30px'>" +
-    "<div style='float: right;'>" + todaysDate(menuSeparator) + "</div><br>" +
-    "<h1 style='text-align: center;'>MENI ZA X-ICE</h1>";
+    "<div style='padding: 40px 40px 40px 90px'>" +
+    "<p style='text-align:center; font-size: 20px'>Od sada ponudu ove menze mo&#382;ete pogledati i na mobilnoj aplikaciji <b>MenzeRi</b></p>" +
+    "<hr>"+
+    "<h1 style='text-align: center;'>MENI ZA X-ICE</h1>" +
+    "<p style='text-align:center'><strong>" + todaysDate(menuSeparator) + "</srong></p>";
+
     for (let i = 0; i < mealType.length; i++) {
         if (mealType[i].checked) {
             JSONObject.data.type = mealType[i].value;
@@ -114,7 +117,7 @@ function create_pdf_document() {
         }
     }
     JSONObject['data']['menus'] = [];
-    JSONObject['data']['menus-Eng'] = [];
+    JSONObject['data']['menusEng'] = [];
 
     console.log(menus.length);
 
@@ -122,7 +125,7 @@ function create_pdf_document() {
         printData += "<div>" +
         "<div style='display: inline-block; text-align: left;'>" +
         "<span style='float: left;'><h4>" + menusHeadings[i].textContent + "</h4></span>" +
-        "<span style='float: right; margin-left: 360px;'><h4>" + menusHeadingsEng[i].textContent + "</h4></span>" +
+        "<span style='float: right; margin-left: 285px;'><h4>" + menusHeadingsEng[i].textContent + "</h4></span>" +
         "</div><br>";
 
         let menusLines = menus[i].value;
@@ -157,13 +160,14 @@ function create_pdf_document() {
 
         }
         printData += "</div>" +
-        "</div></div>";
+        "</div>";
     }
 
-    let printData2 = "<div style='float: right;' >" + todaysDate(menuSeparator) + "</div><br>" +
-    "<div>" +
-    "<h3 style='text-align: center;'>POJEDINACNA JELA/EXTRA MEALS</h3>" +
-    "<div style='display: inline; text-align: left;'>";
+    let printData2 = "<div style='padding: 40px 40px 40px 90px'>" +
+    "<p style='text-align:center; font-size: 20px'>Od sada ponudu ove menze mo&#382;ete pogledati i na mobilnoj aplikaciji <b>MenzeRi</b></p>" +
+    "<hr>"+
+    "<p style='text-align:center'><strong>" + todaysDate(menuSeparator) + "</strong></p>" +
+    "<h3 style='text-align: center;'>POJEDINAČNA JELA / EXTRA MEALS</h3>";
 
     let extraMealsLines = extraMeals.value;
     extraMealsLines = extraMealsLines.replace("\n\n", "\n");
@@ -195,10 +199,10 @@ function create_pdf_document() {
         }
     }
     printData2 += "</div>" +
-    "</div><br>";
+    "<br>";
 
-    printData2 += "<div> " +
-    "<h3 style='text-align: center;'>PRILOZI/SIDEDISHES</h3>" +
+    printData2 += "<div style='padding: 40px 40px 40px 90px'> " +
+    "<h3 style='text-align: center;'>PRILOZI / SIDE DISHES</h3>" +
     "<div style='display: inline; text-align: left;'>";
 
     let sideDishesLines = sideDishes.value;
@@ -233,10 +237,10 @@ function create_pdf_document() {
         }
     }
     printData2 += "</div>" +
-    "</div><br>";
+    "<br>";
 
     printData2 += "<div> " +
-    "<h3 style='text-align: center;'>MARENDE/BRUNCHES</h3>" +
+    "<h3 style='text-align: center;'>MARENDE / BRUNCHES</h3>" +
     "<div style='display: inline; text-align: left;'>";
 
     let brunchesLines = brunches.value;
@@ -270,9 +274,7 @@ function create_pdf_document() {
         }
     }
     printData2 += "</div>" +
-    "</div><br>";
-
-    printData2 += "<div style='text-align: center;'>Enjoy your meal!</div>";
+    "<br>";
 
     let pdf = require('html-pdf');
     let options = {format: 'A4'};
@@ -293,20 +295,19 @@ function create_pdf_document() {
     });
 
     save_data(JSONObject);
-    showPDF(route1);
-    showPDF(route2);
-
+    showPDF(route1, 800, 600);
+    showPDF(route2, 850, 550);
 
     return 1;
 }
 
 //Function for showing print window, 500ms wait because of fileNotFound error.
-async function showPDF(pdf_path) {
+async function showPDF(pdf_path, w, h) {
     await sleep(500);
     const { BrowserWindow } = require('electron').remote
     const PDFWindow = require('electron-pdf-window')
 
-    const win = new BrowserWindow({width: 800, height: 600})
+    const win = new BrowserWindow({width: w, height: h})
 
     PDFWindow.addSupport(win)
     win.loadURL(pdf_path)
@@ -376,7 +377,6 @@ function try_sending() {
             setTimeout(try_sending, 60000);
         }
     });
-
 }
 
 function load_pdf(event) {

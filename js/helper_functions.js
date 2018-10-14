@@ -74,7 +74,7 @@ function todaysDate(separator) {
     mm = "0" + mm;
   }
 
-  today = dd + separator + mm + separator + yyyy;
+  today = dd + separator + mm + separator + yyyy + separator;
   return today;
 }
 
@@ -113,11 +113,6 @@ function change_function(event){
   event.target.value = event.target.value.replace(/["]+/g, "").trim();
 }
 
-function handle_paste_data(data) {
-  let formatedPastedData = data.replace("/^\s*[\r\n]/gm", "");
-  let formatedPastedData2 = formatedPastedData.replace(/['"]+/g, "");
-  return formatedPastedData2.replace(/\t/g, "");
-}
 
 /*
 PASTE EVENTS
